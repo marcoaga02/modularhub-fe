@@ -6,9 +6,16 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "modularhub-fe-temp": {
+    "modularhub-fe": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "type": "component"
+        },
+        "@schematics/angular:service": {
+          "type": "service"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -56,10 +63,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "modularhub-fe-temp:build:production"
+              "buildTarget": "modularhub-fe:build:production"
             },
             "development": {
-              "buildTarget": "modularhub-fe-temp:build:development"
+              "buildTarget": "modularhub-fe:build:development"
             }
           },
           "defaultConfiguration": "development"

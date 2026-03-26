@@ -1,0 +1,15 @@
+<p-toolbar>
+  <ng-template #start>
+    <div class="flex items-center gap-4">
+      <img src="/logo.png" class="h-7" alt="logo" />
+      <span>{{ currentPlugin?.description }}</span>
+    </div>
+  </ng-template>
+  <ng-template #end>
+    <p-button id="user-button"
+              size="small"
+              icon="pi pi-user"
+              [raised]="true"
+              [rounded]="true"/>
+  </ng-template>
+</p-toolbar>
