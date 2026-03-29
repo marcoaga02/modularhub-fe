@@ -1,0 +1,62 @@
+{
+  "general": {
+    "button": {
+      "label": {
+        "add": "Aggiungi",
+        "cancel": "Annulla",
+        "confirm": "Conferma",
+        "delete": "Elimina",
+        "edit": "Modifica"
+      }
+    }
+  },
+  "modules": {
+    "user-management": {
+      "pages": {
+        "group-selector": {
+          "filter-placeholder": "Filtra gruppi",
+          "title": "Selezione gruppi"
+        },
+        "user-form": {
+          "confirmation-cancel-dialog": {
+            "message": "Tutte le modifiche andranno perse. Continuare?",
+            "title": "Conferma annullamento modifiche"
+          },
+          "creation-title": "Creazione utente",
+          "edit-title": "Modifica utente {{fullName}}",
+          "fields": {
+            "email": "E-mail",
+            "enabled": "Abilitato",
+            "firstname": "Nome",
+            "gender": {
+              "female": "Femmina",
+              "male": "Maschio"
+            },
+            "language": "Lingua",
+            "lastname": "Cognome",
+            "mobile-number": "Numero di telefono",
+            "password": "Password",
+            "select-language-placeholder": "Seleziona lingua",
+            "tax-id-number": "Codice fiscale",
+            "username": "Utente"
+          },
+          "footer": {
+            "groups-button-label": "Gruppi"
+          }
+        },
+        "user-list": {
+          "creation-message": "L'utente è stato creato con successo",
+          "edit-message": "L'utente {{fullName}} è stato modificato con successo",
+          "filter-placeholder": "Filtra utenti",
+          "table-header": {
+            "email": "E-mail",
+            "enabled": "Abilitato",
+            "fullname": "Nome",
+            "language": "lingua",
+            "username": "Utente"
+          }
+        }
+      }
+    }
+  }
+}

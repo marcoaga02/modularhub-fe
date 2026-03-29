@@ -19,6 +19,9 @@ import {PluginService} from 'app/core/services/plugin.service';
 import {Plugin} from 'app/core/model/plugin';
 import {PLUGIN_REGISTRY} from 'app/plugin-registry';
 
+export const MAX_RETRY_ATTEMPTS = 3;
+export const RETRY_DELAY_MS = 1000;
+
 function errorHandlerInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {
   const messageService = inject(MessageService);
 
@@ -36,8 +39,9 @@ export function providePluginRoutes(): EnvironmentProviders {
     const router = inject(Router);
 
     return firstValueFrom(
-      pluginService.getPlugins().pipe(
-        retry({ count: 3, delay: 1000 })
+      pluginService.getPlugins()
+        .pipe(
+        retry({count: MAX_RETRY_ATTEMPTS, delay: RETRY_DELAY_MS})
       )
     )
       .then(buildRoutes(router))
@@ -54,13 +58,13 @@ function buildRoutes(router: Router) {
       .map(p => ({
         path: p.path,
         loadComponent: PLUGIN_REGISTRY[p.path],
-        data: { title: p.description }
+        data: {title: p.description}
       }));
 
     router.resetConfig([
-      { path: '', redirectTo: plugins[0]?.path ?? 'dashboard', pathMatch: 'full' },
+      {path: '', redirectTo: plugins[0]?.path ?? 'dashboard', pathMatch: 'full'},
       ...pluginRoutes,
-      { path: '**', redirectTo: plugins[0]?.path ?? 'dashboard' }
+      {path: '**', redirectTo: plugins[0]?.path ?? 'dashboard'}
     ]);
   };
 }

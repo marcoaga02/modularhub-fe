@@ -1,0 +1,85 @@
+<div class="flex flex-col h-full w-full px-15 py-8 gap-4">
+  <div class="flex flex-row justify-between items-center">
+    <p-iconfield>
+      <p-inputicon class="pi pi-search"/>
+      <input
+        pInputText
+        [placeholder]="'modules.user-management.pages.user-list.filter-placeholder' | translate"
+      >
+    </p-iconfield>
+    <div class="flex flex-row gap-3">
+      <p-button
+        [label]="'general.button.label.add' | translate | uppercase"
+        (onClick)="onAddButtonClick()"
+      />
+      <p-button
+        [label]="'general.button.label.edit' | translate | uppercase"
+        (onClick)="onEditButtonClick()"
+        [disabled]="!isEditButtonEnabled()"
+      />
+      <p-button
+        [label]="'general.button.label.delete' | translate | uppercase"
+        [disabled]="!isDeleteButtonEnabled()"
+      />
+    </div>
+  </div>
+  <div class="flex flex-col flex-1 min-h-0">
+    <p-table
+      class="h-full w-full border rounded-xl self-start overflow-hidden"
+      [value]="users"
+      [(selection)]="selectedUsers"
+      [scrollable]="true"
+      scrollHeight="flex"
+      [loading]="loading"
+      selectionMode="multiple"
+      stripedRows
+      showGridlines
+      rowHover
+      dataKey="id"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 4rem">
+            <p-tableHeaderCheckbox/>
+          </th>
+          <th class="uppercase" pSortableColumn="lastname">
+            <div class="flex items-center justify-between">
+              {{ "modules.user-management.pages.user-list.table-header.fullname" | translate }}
+              <p-sortIcon field="lastName"/>
+            </div>
+          </th>
+          <th class="uppercase">
+            {{ "modules.user-management.pages.user-list.table-header.username" | translate }}
+          </th>
+          <th class="uppercase">
+            {{ "modules.user-management.pages.user-list.table-header.email" | translate }}
+          </th>
+          <th class="uppercase">
+            {{ "modules.user-management.pages.user-list.table-header.language" | translate }}
+          </th>
+          <th class="uppercase">
+            {{ "modules.user-management.pages.user-list.table-header.enabled" | translate }}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template [appTableRow]="users" pTemplate="body" let-user>
+        <tr [pSelectableRow]="user">
+          <td>
+            <p-tableCheckbox [value]="user"/>
+          </td>
+          <td>{{ user.lastname }} {{ user.firstname }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.language.label }}</td>
+          <td>
+            @if (user.enabled) {
+              <i class="pi pi-check-circle text-green-500"></i>
+            } @else {
+              <i class="pi pi-times-circle text-red-500"></i>
+            }
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<p-pickList
+  [pt]="pickListPT"
+  [source]="availableGroups"
+  [target]="selectedGroups"
+  [dragdrop]="true"
+  [responsive]="true"
+  filterBy="description"
+  [sourceFilterPlaceholder]="'modules.user-management.pages.group-selector.filter-placeholder' | translate"
+  [targetFilterPlaceholder]="'modules.user-management.pages.group-selector.filter-placeholder' | translate"
+>
+  <ng-template [appPickListItem]="availableGroups" let-group pTemplate="item">
+    <span>{{ group.description }}</span>
+  </ng-template>
+</p-pickList>

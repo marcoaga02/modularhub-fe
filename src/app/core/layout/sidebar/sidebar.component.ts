@@ -4,12 +4,15 @@ import {Button} from 'primeng/button';
 import {PluginService} from 'app/core/services/plugin.service';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {Plugin} from 'app/core/model/plugin';
+import {Router} from '@angular/router';
+import {Tooltip} from 'primeng/tooltip';
 
 @Component({
   selector: 'app-sidebar',
   imports: [
     NgClass,
-    Button
+    Button,
+    Tooltip
   ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css',
@@ -22,6 +25,7 @@ export class SidebarComponent {
 
   constructor(
     private readonly pluginService: PluginService,
+    private readonly router: Router,
   ) {
     this.pluginService.getPlugins().pipe(takeUntilDestroyed()).subscribe({
       next: plugins => {
@@ -41,5 +45,18 @@ export class SidebarComponent {
 
   protected toggle() {
     this.isOpen = !this.isOpen;
+  }
+
+  private close() {
+    if (!this.isOpen) {
+      return;
+    }
+
+    this.toggle();
+  }
+
+  protected navigate(path: string) {
+    this.close();
+    this.router.navigate([path]);
   }
 }

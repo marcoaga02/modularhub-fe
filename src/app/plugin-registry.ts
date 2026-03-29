@@ -5,4 +5,7 @@ export const PLUGIN_REGISTRY: Record<string, Route['loadComponent']> = {
   'home': () =>
     import('app/modules/home-page-placeholder/home-page-placeholder.component')
       .then(m => m.HomePagePlaceholderComponent),
+  'user-management': () =>
+    import('app/modules/user-management/pages/user-list/user-list.component')
+      .then(m => m.default),
 };
